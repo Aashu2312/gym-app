@@ -1,20 +1,20 @@
 import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
 import './App.css'
 
 
 const exercises = [
   {
+    id:1,
     name: "Benchpress",
     sets: "3X10"
   },
   {
+    id:2,
     name: "Incline Dumbbell Press",
     sets: "3X12"
   },
   {
+    id:3,
     name: "Tricep Pushdown",
     sets: "3X12"
   }
@@ -44,6 +44,7 @@ function WorkoutCard(){
       <p>Push Day</p>
       {exercises.map((exercises =>
       <ExerciseRow 
+      key={exercises.id}
       name={exercises.name}
       sets={exercises.sets}
       />
