@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import './App.css'
 
-
 type Exercise = {
   id: number
   name: string
@@ -46,35 +45,37 @@ const workout: Workout = {
   
 };
 
-
 type ExerciseRowProps = {
+  id: number
   name: string
   sets: number
   reps: number
   rest: number
+  onComplete: (id: number) => void
 }
 
 type WorkoutCardProps = {
   workout : Workout
 }
 
-
-function ExerciseRow({name, sets, reps, rest}: ExerciseRowProps){
+function ExerciseRow({id, name, sets, reps, rest, onComplete}: ExerciseRowProps){
   const[completed, setCompleted] = useState(false)
   return(
     <div>
       <h4>{name}</h4>
       <p>{sets} X {reps}</p>
-      <p>{rest} Seconds </p>
+      <p>{rest} Seconds </p> 
       <p>{completed ? "Completed":"Not Completed"}</p>
-      <button onClick={() => setCompleted(true)}>Completed</button>
+      <button onClick={() => {setCompleted(true);onComplete(id)}}>Completed</button>
 
     </div>
   )
 }
 
-
 function WorkoutCard({ workout }: WorkoutCardProps){
+  function handleComplete(id:number){
+    console.log(id)
+  }
   return(
     <div>
       <h2>{workout.day}</h2>
@@ -82,11 +83,12 @@ function WorkoutCard({ workout }: WorkoutCardProps){
       {workout.exercises.map((exercise) =>
 
       <ExerciseRow 
-      key={exercise.id}
+      id={exercise.id}
       name={exercise.name}
       sets={exercise.sets}
       reps={exercise.reps}
       rest={exercise.rest}
+      onComplete= {handleComplete}
       />
       
       
@@ -96,12 +98,10 @@ function WorkoutCard({ workout }: WorkoutCardProps){
   )
 }
 
-
 function App() {
   return(
     <div>
       <h1>GymTrackr</h1>
-      <p>welcome to the home page</p>
 
       <WorkoutCard workout={workout} />
 
@@ -110,6 +110,5 @@ function App() {
   )
  
 }
-
 
 export default App
