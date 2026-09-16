@@ -2,7 +2,43 @@ import { useState } from 'react'
 import './App.css'
 
 
-const exercises = [
+type Exercise = {
+  id: number
+  name: string
+  sets: string
+}
+
+type Workout = {
+  id: number
+  day: string
+  name:string
+  exercises: Exercise[]
+}
+const workout: Workout = {
+  id: 1,
+  day:"Monday",
+  name:"Push Day",
+  exercises:[
+     {
+    id:1,
+    name: "Benchpress",
+    sets: "3X10"
+  },
+  {
+    id:2,
+    name: "Incline Dumbbell Press",
+    sets: "3X12"
+  },
+  {
+    id:3,
+    name: "Tricep Pushdown",
+    sets: "3X12"
+  }
+  ]
+  
+}
+
+const exercises: Exercise[] = [
   {
     id:1,
     name: "Benchpress",
@@ -27,31 +63,40 @@ type ExerciseRowProps = {
 }
 
 
-
 function ExerciseRow({name, sets}: ExerciseRowProps){
+  const[completed, setCompleted] = useState(false)
   return(
     <div>
       <h3>{name}</h3>
       <p>{sets}</p>
+      <p>{completed ? "Completed":"Not Completed"}</p>
+      <button onClick={() => setCompleted(true)}>Completed</button>
+
     </div>
   )
 }
+
 
 function WorkoutCard(){
   return(
     <div>
       <h2>Today's Workout</h2>
       <p>Push Day</p>
-      {exercises.map((exercises =>
+      {workout.exercises.map((exercise) =>
+
       <ExerciseRow 
-      key={exercises.id}
-      name={exercises.name}
-      sets={exercises.sets}
+      key={exercise.id}
+      name={exercise.name}
+      sets={exercise.sets}
       />
-     ))}
+      
+      
+     )}
+
     </div>
   )
 }
+
 
 function App() {
   return(
