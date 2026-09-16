@@ -5,7 +5,9 @@ import './App.css'
 type Exercise = {
   id: number
   name: string
-  sets: string
+  sets: number
+  reps: number
+  rest: number
 }
 
 type Workout = {
@@ -22,53 +24,48 @@ const workout: Workout = {
      {
     id:1,
     name: "Benchpress",
-    sets: "3X10"
+    sets: 3,
+    reps: 10,
+    rest: 30
   },
   {
     id:2,
     name: "Incline Dumbbell Press",
-    sets: "3X12"
+    sets: 3,
+    reps: 10,
+    rest: 30
   },
   {
     id:3,
     name: "Tricep Pushdown",
-    sets: "3X12"
+    sets: 3,
+    reps: 10,
+    rest: 30
   }
   ]
   
-}
-
-const exercises: Exercise[] = [
-  {
-    id:1,
-    name: "Benchpress",
-    sets: "3X10"
-  },
-  {
-    id:2,
-    name: "Incline Dumbbell Press",
-    sets: "3X12"
-  },
-  {
-    id:3,
-    name: "Tricep Pushdown",
-    sets: "3X12"
-  }
-]
+};
 
 
 type ExerciseRowProps = {
   name: string
-  sets: string
+  sets: number
+  reps: number
+  rest: number
+}
+
+type WorkoutCardProps = {
+  workout : Workout
 }
 
 
-function ExerciseRow({name, sets}: ExerciseRowProps){
+function ExerciseRow({name, sets, reps, rest}: ExerciseRowProps){
   const[completed, setCompleted] = useState(false)
   return(
     <div>
-      <h3>{name}</h3>
-      <p>{sets}</p>
+      <h4>{name}</h4>
+      <p>{sets} X {reps}</p>
+      <p>{rest} Seconds </p>
       <p>{completed ? "Completed":"Not Completed"}</p>
       <button onClick={() => setCompleted(true)}>Completed</button>
 
@@ -77,17 +74,19 @@ function ExerciseRow({name, sets}: ExerciseRowProps){
 }
 
 
-function WorkoutCard(){
+function WorkoutCard({ workout }: WorkoutCardProps){
   return(
     <div>
-      <h2>Today's Workout</h2>
-      <p>Push Day</p>
+      <h2>{workout.day}</h2>
+      <h3>{workout.name}</h3>
       {workout.exercises.map((exercise) =>
 
       <ExerciseRow 
       key={exercise.id}
       name={exercise.name}
       sets={exercise.sets}
+      reps={exercise.reps}
+      rest={exercise.rest}
       />
       
       
@@ -104,7 +103,7 @@ function App() {
       <h1>GymTrackr</h1>
       <p>welcome to the home page</p>
 
-      <WorkoutCard />
+      <WorkoutCard workout={workout} />
 
     </div>
 
