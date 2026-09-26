@@ -1,3 +1,7 @@
+import LoginPage from "./pages/loginPage"
+import MemberDash from "./pages/memberDash"
+import OwnerDash from "./pages/ownerDash"
+import MemberMembership from "./pages/memberMembership"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { useState } from 'react'
 import './App.css'
@@ -133,11 +137,13 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<h1>GymTrackr Home</h1>} />
-        <Route path="/login" element={<h1>Login Page</h1>} />
-        <Route path="/member" element={<h1>Member Dashboard</h1>} />
-        <Route path="/owner" element={<h1>Owner Dashboard</h1>} />
-      </Routes>
+         <Route path="/" element={<h1>GymTrackr Home</h1>} />
+         <Route path="/login" element={<LoginPage />} />
+         <Route path="/member" element={<MemberDash />} />
+         <Route path="/owner" element={<OwnerDash />} />
+         <Route path="/member/membership" element={<MemberMembership />}
+/>
+</Routes>
     </BrowserRouter>
   )
 }
