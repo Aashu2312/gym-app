@@ -1,36 +1,8 @@
-type Payment = {
-  id: number
-  memberName: string
-  amount: number
-  status: "Paid" | "Due"
-  dueDate: string
-}
-
-const payments: Payment[] = [
-  {
-    id: 1,
-    memberName: "Rahul Sharma",
-    amount: 1500,
-    status: "Paid",
-    dueDate: "30 September 2026"
-  },
-  {
-    id: 2,
-    memberName: "Aman Verma",
-    amount: 1500,
-    status: "Due",
-    dueDate: "30 September 2026"
-  },
-  {
-    id: 3,
-    memberName: "Priya Singh",
-    amount: 1500,
-    status: "Due",
-    dueDate: "25 September 2026"
-  }
-]
+import { getPayments } from "../data/payments"
 
 function OwnerPayments() {
+  const payments = getPayments()
+
   return (
     <div>
       <h1>Payments</h1>

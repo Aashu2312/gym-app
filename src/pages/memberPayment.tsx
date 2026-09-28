@@ -1,9 +1,27 @@
 import { useState } from "react"
+import {
+  getPayments,
+  savePayments
+} from "../data/payments"
 
 function MemberPayment() {
   const [paid, setPaid] = useState(false)
 
   function handlePayment() {
+    const payments = getPayments()
+
+    const updatedPayments = payments.map((payment) => {
+      if (payment.memberName === "Rahul Sharma") {
+        return {
+          ...payment,
+          status: "Paid"
+        }
+      }
+
+      return payment
+    })
+
+    savePayments(updatedPayments)
     setPaid(true)
   }
 
