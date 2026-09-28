@@ -11,7 +11,7 @@ const defaultPayments: Payment[] = [
     id: 1,
     memberName: "Rahul Sharma",
     amount: 1500,
-    status: "Paid",
+    status: "Due",
     dueDate: "30 September 2026"
   },
   {

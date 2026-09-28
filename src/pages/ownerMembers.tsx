@@ -1,32 +1,32 @@
+import { getPayments } from "../data/payments"
+
 type Member = {
   id: number
   name: string
   membership: string
-  paymentStatus: string
 }
 
 const members: Member[] = [
   {
     id: 1,
-    name: "Yashasvi",
-    membership: "Active",
-    paymentStatus: "Paid"
+    name: "Rahul Sharma",
+    membership: "Active"
   },
   {
     id: 2,
-    name: "Aashu",
-    membership: "Active",
-    paymentStatus: "Due"
+    name: "Aman Verma",
+    membership: "Active"
   },
   {
     id: 3,
-    name: "pavbhatura",
-    membership: "Expired",
-    paymentStatus: "Due"
+    name: "Priya Singh",
+    membership: "Expired"
   }
 ]
 
 function OwnerMembers() {
+  const payments = getPayments()
+
   return (
     <div>
       <h1>Members</h1>
@@ -35,7 +35,7 @@ function OwnerMembers() {
         <div key={member.id}>
           <h2>{member.name}</h2>
           <p>Membership: {member.membership}</p>
-          <p>Payment: {member.paymentStatus}</p>
+          <p>Payment: {payments.find((payment) => payment.memberName === member.name)?.status ?? "Due"}</p>
         </div>
       ))}
     </div>
