@@ -5,7 +5,15 @@ import {
 } from "../data/payments"
 
 function MemberPayment() {
-  const [paid, setPaid] = useState(false)
+  const [paid, setPaid] = useState(() => {
+  const payments = getPayments()
+
+  const currentPayment = payments.find(
+    (payment) => payment.memberName === "Rahul Sharma"
+  )
+
+  return currentPayment?.status === "Paid"
+})
 
   function handlePayment() {
     const payments = getPayments()
@@ -14,7 +22,7 @@ function MemberPayment() {
       if (payment.memberName === "Rahul Sharma") {
         return {
           ...payment,
-          status: "Paid"
+          status: "Paid" as const
         }
       }
 
