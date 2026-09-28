@@ -16,9 +16,7 @@ function MemberMembership() {
       <h1>My Membership</h1>
 
       <p>Plan: {membership.plan}</p>
-
       <p>Status: {membership.status}</p>
-
       <p>Expiry Date: {membership.expiryDate}</p>
     </div>
   )
