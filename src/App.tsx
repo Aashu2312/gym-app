@@ -19,13 +19,13 @@ import './App.css'
 function App() {
   return (
     <BrowserRouter>
-     <Routes>
+ <Routes>
   <Route
     path="/"
     element={
-      <Button color="primary">
-        HeroUI is working
-      </Button>
+ <Button variant="primary">
+  HeroUI is working
+</Button>
     }
   />
 

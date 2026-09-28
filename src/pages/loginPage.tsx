@@ -1,51 +1,111 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import {
+  Button,
+  Form,
+  Input,
+  Label,
+  ListBox,
+  Select,
+  TextField
+} from "@heroui/react"
 
 function LoginPage() {
   const [name, setName] = useState("")
   const [role, setRole] = useState("")
   const navigate = useNavigate()
 
- function handleLogin() {
-  if (name === "" || role === "") {
-    alert("Please enter your name and select a role")
-    return
-  }
+  function handleLogin() {
+    if (name === "" || role === "") {
+      alert("Please enter your name and select a role")
+      return
+    }
 
-  if (role === "member") {
-    navigate("/member")
-  }
+    if (role === "member") {
+      navigate("/member")
+    }
 
-  if (role === "owner") {
-    navigate("/owner")
+    if (role === "owner") {
+      navigate("/owner")
+    }
   }
-}
 
   return (
-    <div>
-      <h1>GymTrackr Login</h1>
-
-   <input
-  type="text"
-  placeholder="Enter your name"
-  value={name}
-  onChange={(event) => setName(event.target.value)}
-/>
-
-      <select
-        value={role}
-        onChange={(event) => setRole(event.target.value)}
+<div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+        <Form
+className="w-full max-w-md flex flex-col gap-6 rounded-2xl bg-white p-8 shadow-lg"
+        onSubmit={(event) => {
+          event.preventDefault()
+          handleLogin()
+        }}
       >
-        <option value="">Select Role</option>
-        <option value="member">Member</option>
-        <option value="owner">Owner</option>
-      </select>
+<div className="text-center">
+  <h1 className="text-3xl font-bold">
+    GymTrackr
+  </h1>
 
-      <button onClick={handleLogin}>
-        Login
-      </button>
+  <p className="text-gray-500 mt-2">
+    Manage your gym, your way.
+  </p>
+</div>
 
-      <p>Selected role: {role}</p>
+        <TextField
+          isRequired
+          name="name"
+        >
+          <Label>Name</Label>
+
+          <Input
+            placeholder="Enter your name"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+          />
+        </TextField>
+
+        <Select
+          name="role"
+          placeholder="Select your role"
+          value={role || null}
+          onChange={(value) => {
+            setRole(value as string)
+          }}
+        >
+          <Label>Role</Label>
+
+          <Select.Trigger>
+            <Select.Value />
+            <Select.Indicator />
+          </Select.Trigger>
+
+          <Select.Popover>
+            <ListBox>
+              <ListBox.Item
+                id="member"
+                textValue="Member"
+              >
+                Member
+                <ListBox.ItemIndicator />
+              </ListBox.Item>
+
+              <ListBox.Item
+                id="owner"
+                textValue="Owner"
+              >
+                Owner
+                <ListBox.ItemIndicator />
+              </ListBox.Item>
+            </ListBox>
+          </Select.Popover>
+        </Select>
+
+        <Button
+          type="submit"
+          variant="primary"
+          className="w-full"
+        >
+          Login
+        </Button>
+      </Form>
     </div>
   )
 }
