@@ -9,17 +9,17 @@ type Member = {
 const members: Member[] = [
   {
     id: 1,
-    name: "Rahul Sharma",
+    name: "Yashasvi",
     membership: "Active"
   },
   {
     id: 2,
-    name: "Aman Verma",
+    name: "Aashu",
     membership: "Active"
   },
   {
     id: 3,
-    name: "Priya Singh",
+    name: "pavbhatura",
     membership: "Expired"
   }
 ]
