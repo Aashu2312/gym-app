@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { getPayments } from "../data/payments"
+import { Card, Button, Chip } from "@heroui/react"
 
 function MemberDash() {
   const payments = getPayments()
@@ -8,52 +9,54 @@ function MemberDash() {
     (payment) => payment.memberName === "Rahul Sharma"
   )
 
-  return (
-    <div>
-      <h1>Welcome to GymTrackr</h1>
+return (
+  <div className="min-h-screen bg-gray-50 p-6">
+    <div className="max-w-6xl mx-auto">
+      <h1 className="text-3xl font-bold mb-2">Welcome to GymTrackr</h1>
+      <p className="text-gray-500 mb-8">Here's your gym overview.</p>
 
-      <h2>Membership</h2>
-      <p>Status: Active</p>
-      <p>Expires: 30 October 2026</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-      <Link to="/member/membership">
-        View Membership
-      </Link>
+        <Card className="p-6">
+          <h2 className="text-xl font-semibold mb-4">Membership</h2>
+          <div className="flex items-center gap-3 mb-4">
+            <Chip color="success">Active</Chip>
+            <p>Expires: 30 October 2026</p>
+          </div>
+          <Button variant="secondary" onPress={() => window.location.href = "/member/membership"}>View Membership</Button>
+        </Card>
 
-      <h2>Payment</h2>
-      <p>Monthly payment: ₹1500</p>
+        <Card className="p-6">
+          <h2 className="text-xl font-semibold mb-4">Payment</h2>
+          <p className="mb-2">Monthly payment: ₹1500</p>
+          <Chip color={currentMemberPayment?.status === "Paid" ? "success" : "warning"}>{currentMemberPayment?.status}</Chip>
+          <div className="mt-4">
+            <Button variant="primary" onPress={() => window.location.href = "/member/payment"}>Make Payment</Button>
+          </div>
+        </Card>
 
-      <p>
-        Status: {currentMemberPayment?.status}
-      </p>
+        <Card className="p-6">
+          <h2 className="text-xl font-semibold mb-4">Today's Workout</h2>
+          <p className="text-gray-500 mb-4">Push Day</p>
+          <Button variant="secondary" onPress={() => window.location.href = "/member/workout"}>View Workout</Button>
+        </Card>
 
-      <Link to="/member/payment">
-        Make Payment
-      </Link>
+        <Card className="p-6">
+          <h2 className="text-xl font-semibold mb-4">Diet Plan</h2>
+          <p className="text-gray-500 mb-4">View your gym-provided nutrition plan.</p>
+          <Button variant="secondary" onPress={() => window.location.href = "/member/diet"}>View Diet Plan</Button>
+        </Card>
 
-      <h2>Today's Workout</h2>
+        <Card className="p-6 md:col-span-2">
+          <h2 className="text-xl font-semibold mb-4">Announcements</h2>
+          <p className="text-gray-500 mb-4">Stay updated with announcements from your gym.</p>
+          <Button variant="secondary" onPress={() => window.location.href = "/member/announcements"}>View Announcements</Button>
+        </Card>
 
-      <p>Push Day</p>
-
-      <Link to="/member/workout">
-        View Workout
-      </Link>
-
-      <h2>Diet</h2>
-
-      <Link to="/member/diet">
-        View Diet Plan
-      </Link>
-
-      <h2>Announcements</h2>
-
-      <p>No new announcements</p>
-
-      <Link to="/member/announcements">
-        View Announcements
-      </Link>
+      </div>
     </div>
-  )
+  </div>
+)
 }
 
 export default MemberDash
