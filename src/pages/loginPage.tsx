@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Button, Form, Input, Label, ListBox, Select, TextField } from "@heroui/react"
+import { addMember } from "../data/members"
 
 function LoginPage() {
   const [name, setName] = useState("")
@@ -17,6 +18,7 @@ function LoginPage() {
     localStorage.setItem("currentRole", role)
 
     if (role === "member") {
+      addMember(name.trim())
       navigate("/member")
     }
 

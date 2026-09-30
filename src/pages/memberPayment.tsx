@@ -3,16 +3,25 @@ import { Card, Button, Chip } from "@heroui/react"
 import { getPayments, savePayments } from "../data/payments"
 
 function MemberPayment() {
+  const currentUser = localStorage.getItem("currentUser") || ""
   const [paid, setPaid] = useState(() => {
     const payments = getPayments()
-    const currentPayment = payments.find((payment) => payment.memberName === "Rahul Sharma")
+    const currentPayment = payments.find((payment) => payment.memberName.toLowerCase() === currentUser.toLowerCase())
     return currentPayment?.status === "Paid"
   })
 
   function handlePayment() {
     const payments = getPayments()
-    const updatedPayments = payments.map((payment) => payment.memberName === "Rahul Sharma" ? { ...payment, status: "Paid" as const } : payment)
-    savePayments(updatedPayments)
+    const existingPayment = payments.find((payment) => payment.memberName.toLowerCase() === currentUser.toLowerCase())
+
+    if (existingPayment) {
+      const updatedPayments = payments.map((payment) => payment.memberName.toLowerCase() === currentUser.toLowerCase() ? { ...payment, status: "Paid" as const } : payment)
+      savePayments(updatedPayments)
+    } else {
+      const newPayment = { id: Date.now(), memberName: currentUser, amount: 1500, status: "Paid" as const, dueDate: "30 September 2026" }
+      savePayments([...payments, newPayment])
+    }
+
     setPaid(true)
   }
 

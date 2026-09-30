@@ -23,7 +23,7 @@ function MemberDiet() {
               <h2 className="text-xl font-semibold">Daily Nutrition Plan</h2>
               <p className="text-gray-500 mt-1">Recommended daily intake</p>
             </div>
-            <Chip color="primary">Member Plan</Chip>
+            <Chip color = "primary">Member Plan</Chip>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-6">
