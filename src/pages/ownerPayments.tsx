@@ -1,8 +1,10 @@
 import { useState } from "react"
-import { Card, Chip, Button } from "@heroui/react"
+import { useNavigate } from "react-router-dom"
+import { Card, Chip, Button, CloseButton } from "@heroui/react"
 import { getPayments, savePayments } from "../data/payments"
 
 function OwnerPayments() {
+  const navigate = useNavigate()
   const [payments, setPayments] = useState(getPayments())
 
   function markAsPaid(id: number) {
@@ -14,6 +16,10 @@ function OwnerPayments() {
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-5xl mx-auto">
+        <div className="flex justify-end mb-4">
+          <CloseButton aria-label="Back to dashboard" className="size-8 rounded-full bg-default text-muted hover:bg-default-hover hover:text-foreground active:scale-95" onPress={() => navigate("/owner")} />
+        </div>
+
         <div className="mb-8">
           <p className="text-gray-500">Gym Management</p>
           <h1 className="text-3xl font-bold">Payments</h1>

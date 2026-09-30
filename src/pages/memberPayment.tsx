@@ -1,9 +1,12 @@
 import { useState } from "react"
-import { Card, Button, Chip } from "@heroui/react"
+import { useNavigate } from "react-router-dom"
+import { Card, Button, Chip, CloseButton } from "@heroui/react"
 import { getPayments, savePayments } from "../data/payments"
 
 function MemberPayment() {
+  const navigate = useNavigate()
   const currentUser = localStorage.getItem("currentUser") || ""
+
   const [paid, setPaid] = useState(() => {
     const payments = getPayments()
     const currentPayment = payments.find((payment) => payment.memberName.toLowerCase() === currentUser.toLowerCase())
@@ -28,6 +31,10 @@ function MemberPayment() {
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-2xl mx-auto">
+        <div className="flex justify-end mb-4">
+          <CloseButton aria-label="Back to dashboard" className="size-8 rounded-full bg-default text-muted hover:bg-default-hover hover:text-foreground active:scale-95" onPress={() => navigate("/member")} />
+        </div>
+
         <div className="mb-8">
           <p className="text-gray-500">Membership</p>
           <h1 className="text-3xl font-bold">Monthly Payment</h1>

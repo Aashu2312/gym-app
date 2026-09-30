@@ -1,14 +1,20 @@
+import { useNavigate } from "react-router-dom"
 import { getMembers } from "../data/members"
 import { getPayments } from "../data/payments"
-import { Card, Chip } from "@heroui/react"
+import { Card, Chip, CloseButton } from "@heroui/react"
 
 function OwnerMembers() {
+  const navigate = useNavigate()
   const members = getMembers()
   const payments = getPayments()
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-5xl mx-auto">
+        <div className="flex justify-end mb-4">
+          <CloseButton aria-label="Back to dashboard" className="size-8 rounded-full bg-default text-muted hover:bg-default-hover hover:text-foreground active:scale-95" onPress={() => navigate("/owner")} />
+        </div>
+
         <div className="mb-8">
           <p className="text-gray-500">Gym Management</p>
           <h1 className="text-3xl font-bold">Members</h1>
@@ -22,7 +28,7 @@ function OwnerMembers() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {members.map((member) => {
-              const paymentStatus = payments.find((payment) => payment.memberName === member.name)?.status ?? "Due"
+              const paymentStatus = payments.find((payment) => payment.memberName.toLowerCase() === member.name.toLowerCase())?.status ?? "Due"
 
               return (
                 <Card key={member.id} className="p-6">
