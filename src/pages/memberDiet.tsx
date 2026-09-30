@@ -152,12 +152,12 @@ function MemberDiet() {
               <Label>Activity Level</Label>
               <Select.Trigger><Select.Value /><Select.Indicator /></Select.Trigger>
               <Select.Popover>
-       <ListBox>
-  <ListBox.Item id="sedentary" textValue="Sedentary">Sedentary<ListBox.ItemIndicator /></ListBox.Item>
-  <ListBox.Item id="moderately-active" textValue="Moderately Active">Moderately Active<ListBox.ItemIndicator /></ListBox.Item>
-  <ListBox.Item id="active" textValue="Active">Active<ListBox.ItemIndicator /></ListBox.Item>
-  <ListBox.Item id="very-active" textValue="Very Active">Very Active<ListBox.ItemIndicator /></ListBox.Item>
-</ListBox>
+            <ListBox>
+              <ListBox.Item id="sedentary" textValue="Sedentary">Sedentary<ListBox.ItemIndicator /></ListBox.Item>
+              <ListBox.Item id="moderately-active" textValue="Moderately Active">Moderately Active<ListBox.ItemIndicator /></ListBox.Item>
+              <ListBox.Item id="active" textValue="Active">Active<ListBox.ItemIndicator /></ListBox.Item>
+              <ListBox.Item id="very-active" textValue="Very Active">Very Active<ListBox.ItemIndicator /></ListBox.Item>
+            </ListBox>
               </Select.Popover>
             </Select>
           </div>
