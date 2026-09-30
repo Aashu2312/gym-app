@@ -1,9 +1,16 @@
-import { Card, Button, Chip } from "@heroui/react"
+import { Card, Button, Chip, CloseButton } from "@heroui/react"
+import { useNavigate } from "react-router-dom"
 
 function MemberMembership() {
+  const navigate = useNavigate()
+
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-4xl mx-auto">
+        <div className="flex justify-end mb-4">
+          <CloseButton aria-label="Back to dashboard" className="size-8 rounded-full bg-default text-muted hover:bg-default-hover hover:text-foreground active:scale-95" onPress={() => navigate("/member")} />
+        </div>
+
         <div className="mb-8">
           <p className="text-gray-500">My Gym</p>
           <h1 className="text-3xl font-bold">Membership</h1>
@@ -38,7 +45,7 @@ function MemberMembership() {
 
           <div className="mt-8 pt-6 border-t border-gray-200">
             <p className="text-gray-500 mb-4">Your membership is currently active.</p>
-            <Button variant="primary" onPress={() => window.location.href = "/member/payment"}>Manage Payment</Button>
+            <Button variant="primary" onPress={() => navigate("/member/payment")}>Manage Payment</Button>
           </div>
         </Card>
       </div>
