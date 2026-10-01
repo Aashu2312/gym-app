@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { getPayments } from "../data/payments"
-import { Card, Button, Chip, CloseButton } from "@heroui/react"
+import { Card, Button, Chip } from "@heroui/react"
 
 function MemberDash() {
   const navigate = useNavigate()
