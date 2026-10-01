@@ -10,16 +10,16 @@ function MemberPayment() {
 
   const [paid, setPaid] = useState(() => {
     const payments = getPayments()
-    const currentPayment = payments.find((payment) => currentEmail ? payment.memberEmail.toLowerCase() === currentEmail.toLowerCase() : payment.memberName.toLowerCase() === currentUser.toLowerCase())
+    const currentPayment = payments.find((payment) => currentEmail ? payment.memberEmail?.toLowerCase() === currentEmail.toLowerCase() : payment.memberName.toLowerCase() === currentUser.toLowerCase())
     return currentPayment?.status === "Paid"
   })
 
   function handlePayment() {
     const payments = getPayments()
-    const existingPayment = payments.find((payment) => currentEmail ? payment.memberEmail.toLowerCase() === currentEmail.toLowerCase() : payment.memberName.toLowerCase() === currentUser.toLowerCase())
+    const existingPayment = payments.find((payment) => currentEmail ? payment.memberEmail?.toLowerCase() === currentEmail.toLowerCase() : payment.memberName.toLowerCase() === currentUser.toLowerCase())
 
     if (existingPayment) {
-      const updatedPayments = payments.map((payment) => payment.id === existingPayment.id ? { ...payment, status: "Paid" as const } : payment)
+      const updatedPayments = payments.map((payment) => payment.id === existingPayment.id ? { ...payment, status: "Paid" as const, memberEmail: payment.memberEmail || currentEmail } : payment)
       savePayments(updatedPayments)
     } else {
       const newPayment = { id: Date.now(), memberName: currentUser, memberEmail: currentEmail, amount: 1500, status: "Paid" as const, dueDate: "30 September 2026" }

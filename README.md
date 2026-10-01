@@ -1,78 +1,110 @@
-# React + TypeScript + Vite
+GymTrackr 🏋️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+GymTrackr is a frontend-based gym management and member engagement web application built with React and TypeScript.
 
-Currently, two official plugins are available:
+The application provides separate interfaces for gym members and gym owners. Members can manage their membership, payments, workouts, nutrition information, and announcements, while owners can manage members, payments, and gym announcements.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Features
 
-## React Compiler
+Member
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+* Member registration and login
+* Membership status and expiry
+* Monthly payment tracking
+* Workout plans and exercise information
+* Nutrition and calorie calculator
+* Gym announcements
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+Owner
 
-## Expanding the ESLint configuration
+* Owner dashboard
+* View registered members
+* View and manage payment status
+* Create and publish announcements
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Integrations
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+* Wger API for exercise information
+* MyPlate.food API for nutrition calculations
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+* React
+* TypeScript
+* Tailwind CSS
+* HeroUI
+* React Router
+* localStorage
+* Wger API
+* MyPlate.food API
 
-```
+Getting Started
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Prerequisites
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Make sure you have Node.js and npm installed.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Installation
 
-```
+Clone the repository:
+
+git clone https://github.com/your-username/gymtrackr.git
+cd gymtrackr
+
+Install dependencies:
+
+npm install
+
+Start the development server:
+
+npm run dev
+
+Open the URL shown in the terminal, usually:
+
+http://localhost:5173
+
+Demo Owner Account
+
+For the owner dashboard:
+
+Email: pavbhatura@gmail.com
+Password: horse123
+
+Members can create their own accounts through the registration option.
+
+Project Structure
+
+src/
+├── data/
+│   ├── announcements.ts
+│   ├── members.ts
+│   └── payments.ts
+├── pages/
+│   ├── loginPage.tsx
+│   ├── memberDash.tsx
+│   ├── memberMembership.tsx
+│   ├── memberPayment.tsx
+│   ├── memberWorkout.tsx
+│   ├── memberDiet.tsx
+│   ├── memberAnnouncements.tsx
+│   ├── ownerDash.tsx
+│   ├── ownerMembers.tsx
+│   ├── ownerPayments.tsx
+│   ├── ownerAnnouncements.tsx
+│   └── protectedRoute.tsx
+├── auth.ts
+├── App.tsx
+└── main.tsx
+
+Note
+
+GymTrackr is currently a frontend-only prototype. Authentication and data storage are implemented on the client side using localStorage. It does not currently include a backend, database, or real payment gateway.
+
+Future Scope
+
+* Backend and database integration
+* Secure server-side authentication
+* Real payment gateway
+* Push notifications
+* Cloud deployment
+* Advanced gym administration features
